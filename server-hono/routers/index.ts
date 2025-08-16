@@ -1,0 +1,34 @@
+// server/routers/_app.ts
+import { router, publicProcedure } from '../src/trpc';
+import { z } from 'zod';
+import { userRouter } from './user';
+
+export const appRouter = router({
+  hello: publicProcedure
+    .input(z.object({ name: z.string().optional() }))
+    .query(({ input }) => {
+      return { message: `Hello ${input?.name ?? "World"} from Hono + tRPC 🚀` };
+    }),
+  greeting: publicProcedure
+    .input(z.object({ name: z.string().optional() }))
+    .query(({ input }) => {
+      return { message: `Hello, ${input.name ?? 'world'}!` };
+    }),
+  test2: publicProcedure
+    .input(z.object({ name: z.string().optional() }))
+    .query(({ input }) => {
+      return { message: `Test Tambah router trpc` };
+    }),
+  profil: publicProcedure
+    .input(z.object({ name: z.string(), age: z.string(), role: z.string() }))
+    .query(({ input }) => {
+      return {
+        message: `Name: ${input.name} \n Age: ${input.age} \n Role: ${input.role}`
+      }
+    }),
+  // example with supabase
+  user: userRouter
+  // tambahkan procedure lainnya di sini
+});
+
+export type AppRouter = typeof appRouter;
