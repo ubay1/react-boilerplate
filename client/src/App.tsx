@@ -25,6 +25,7 @@ import { schemaTest } from "./schema-validation/app";
 import { useTRPC } from "./lib/trpc";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Skeleton } from "./components/ui/skeleton";
+import { Link } from "react-router";
 
 function App() {
   // ===================== React Hook Form + Zod =================== //
@@ -60,8 +61,9 @@ function App() {
       <div className="flex flex-col justify-center items-center">
         <div className="text-4xl font-bold">React Boilerplate</div>
         <div className="text-lg text-center mt-2">
-          TypeScript, Tailwind + shadcn/ui, React Query (TanStack), tRPC, React
-          Hook Form + Zod, Vitest, dan Playwright.
+          TypeScript, Tailwind + shadcn/ui, React Query (TanStack), React Router
+          (declarative mode) tRPC, React Hook Form + Zod, Vitest, dan
+          Playwright.
         </div>
       </div>
 
@@ -121,22 +123,41 @@ function App() {
           <CardContent>
             <div className="mt-4">
               <div>{greeting.data?.message}</div>
-              {getAllUser.isFetching && (
+              {getAllUser.isLoading && (
                 <div className="flex flex-col gap-2">
                   <Skeleton className="h-[125px] w-full rounded-xl" />
                   <Skeleton className="h-[125px] w-full rounded-xl" />
                   <Skeleton className="h-[125px] w-full rounded-xl" />
                 </div>
               )}
-              {getAllUser.data?.map((user) => (
-                <Card key={user.id} className="mb-2">
-                  <CardContent>
-                    <div>Name: {user.name}</div>
-                    <div>Age: {user.age}</div>
-                    <div>Role: {user.role}</div>
-                  </CardContent>
-                </Card>
-              ))}
+              {!getAllUser.isLoading &&
+                getAllUser.data?.map((user) => (
+                  <Card key={user.id} className="mb-2">
+                    <CardContent>
+                      <div>Name: {user.name}</div>
+                      <div>Age: {user.age}</div>
+                      <div>Role: {user.role}</div>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="mt-4">
+        <Card>
+          <CardHeader>
+            <CardTitle>React Router</CardTitle>
+            <CardDescription>
+              this is example for React Router (declarative mode)
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="mt-4">
+              <Link to="/about" title="Goto About">
+                <Button className="cursor-pointer">Goto About</Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

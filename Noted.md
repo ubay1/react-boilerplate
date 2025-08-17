@@ -1,6 +1,6 @@
 # My Boilerplate
 
-> TypeScript, Tailwind + shadcn/ui, React Query (TanStack), tRPC, React Hook Form + Zod, Vitest, dan Playwright.
+> TypeScript, Tailwind + shadcn/ui, React Query (TanStack), React Router (Declarative mode), tRPC, React Hook Form + Zod, Vitest, dan Playwright.
 
 ```bash
 # install react vite

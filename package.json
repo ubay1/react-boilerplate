@@ -4,6 +4,7 @@
     "dev:server": "nodemon --watch server/src --ext ts --exec tsx server/src/index.ts",
     "dev:client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+    "dev2": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server-hono\"",
     "build": "npm run build --prefix client && npm run build --prefix server"
   },
   "devDependencies": {

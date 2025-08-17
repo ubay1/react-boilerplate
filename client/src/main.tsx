@@ -1,12 +1,19 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router";
 import App from "./App.tsx";
 import ReactQueryProvider from "./providers/react-query-provider.tsx";
+import About from "./pages/about.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ReactQueryProvider>
-      <App />
-    </ReactQueryProvider>
+    <BrowserRouter>
+      <ReactQueryProvider>
+        <Routes>
+          <Route index element={<App />} />
+          <Route path="about" element={<About />} />
+        </Routes>
+      </ReactQueryProvider>
+    </BrowserRouter>
   </StrictMode>
 );
