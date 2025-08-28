@@ -43,7 +43,6 @@ function App() {
   };
 
   // ===================== React Query + TRPC =================== //
-  // use `import { trpc } from './utils/trpc'` if you're using the singleton pattern
   const trpc = useTRPC();
   const greeting = useQuery(trpc.greeting.queryOptions({ name: "ubay" }));
   const getAllUser = useQuery(trpc.user.getAllUser.queryOptions());
@@ -60,10 +59,10 @@ function App() {
     <div className={"min-h-dvh w-full gap-4 p-4"}>
       <div className="flex flex-col justify-center items-center">
         <div className="text-4xl font-bold">React Boilerplate</div>
-        <div className="text-lg text-center mt-2">
+        <div className="text-lg text-center mt-2" data-testid="heading-greet">
           TypeScript, Tailwind + shadcn/ui, React Query (TanStack), React Router
-          (declarative mode) tRPC, React Hook Form + Zod, Vitest, dan
-          Playwright.
+          (declarative mode) tRPC, React Hook Form + Zod, Vitest + React Testing
+          Library, dan Playwright.
         </div>
       </div>
 
