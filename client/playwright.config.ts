@@ -17,7 +17,7 @@ export default defineConfig({
   },
   webServer: {
     command: 'npm run dev', // Pastikan ini menjalankan Vite dev server
-    url: 'http://localhost:3002',
+    url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
   },
 })
