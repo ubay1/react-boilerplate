@@ -15,5 +15,5 @@ createRoot(document.getElementById("root")!).render(
         </Routes>
       </ReactQueryProvider>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode>,
 );
