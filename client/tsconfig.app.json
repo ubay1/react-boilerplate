@@ -11,13 +11,14 @@
       "@/*": ["./src/*"],
       "@server/*": ["server/*"]
     },
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    "composite": true,
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    // "noEmit": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
     "jsx": "react-jsx",
 
     /* Linting */
