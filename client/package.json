@@ -6,12 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:watch": "vitest --watch",
     "test:e2e": "playwright test",
-    "test:e2e-ui": "playwright test --ui"
+    "test:e2e-ui": "playwright test --ui",
+    "format": "prettier --write src/",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-pattern .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:prettier",
+    "lintfix:js": "npm run lint:js -- --fix",
+    "lintfix:prettier": "prettier --write --list-different .",
+    "lintfix": "npm run lintfix:js && npm run lintfix:prettier"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
