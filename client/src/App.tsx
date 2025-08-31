@@ -52,7 +52,7 @@ function App() {
         console.log("sukses add data = ", data);
         getAllUser.refetch(); // Refresh user list
       },
-    })
+    }),
   );
 
   return (

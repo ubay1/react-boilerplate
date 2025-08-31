@@ -27,6 +27,6 @@ export function renderWithTRPC(ui: React.ReactElement) {
           {ui}
         </TrpcProvider>
       </QueryClientProvider>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 }

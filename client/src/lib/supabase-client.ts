@@ -1,27 +1,33 @@
-
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl) {
   // Changed to console.warn
-  console.warn("Warning: VITE_SUPABASE_URL is not set. Please add it to your .env.local file.");
+  console.warn(
+    "Warning: VITE_SUPABASE_URL is not set. Please add it to your .env.local file.",
+  );
 }
 if (!supabaseAnonKey) {
   // Changed to console.warn
-  console.warn("Warning: VITE_SUPABASE_ANON_KEY is not set. Please add it to your .env.local file.");
+  console.warn(
+    "Warning: VITE_SUPABASE_ANON_KEY is not set. Please add it to your .env.local file.",
+  );
 }
 
 // Fallback to placeholder if not set, to prevent crashing during build/dev if .env.local is missing initially
 const activeSupabaseUrl = supabaseUrl || "https://your-project-ref.supabase.co";
 const activeSupabaseAnonKey = supabaseAnonKey || "your-anon-key";
 
-export const supabase: SupabaseClient = createClient(activeSupabaseUrl, activeSupabaseAnonKey);
+export const supabase: SupabaseClient = createClient(
+  activeSupabaseUrl,
+  activeSupabaseAnonKey,
+);
 
 // Helper function to create a .env.local file if it doesn't exist, instructing the user.
 // This is just for local development convenience.
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   if (!supabaseUrl || !supabaseAnonKey) {
     console.warn(
       `Supabase URL or Anon Key is missing. 
@@ -30,8 +36,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
       NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_public_key
 
       You can get these from your Supabase project settings.
-      The app is currently using placeholder values.`
+      The app is currently using placeholder values.`,
     );
   }
 }
-

@@ -9,13 +9,13 @@ describe("Home page", () => {
   it("greeting home page", () => {
     const { getByTestId } = renderWithTRPC(<HomePage />);
     expect(getByTestId("heading-greet").textContent).toBe(
-      "TypeScript, Tailwind + shadcn/ui, React Query (TanStack), React Router (declarative mode) tRPC, React Hook Form + Zod, Vitest + React Testing Library, dan Playwright."
+      "TypeScript, Tailwind + shadcn/ui, React Query (TanStack), React Router (declarative mode) tRPC, React Hook Form + Zod, Vitest + React Testing Library, dan Playwright.",
     );
   });
 
   it("example form: display validation error message when submitting empty form", async () => {
     const { getByTestId, queryByTestId, findByTestId } = renderWithTRPC(
-      <HomePage />
+      <HomePage />,
     );
 
     // error message return null
@@ -40,7 +40,7 @@ describe("Home page", () => {
     await userEvent.type(input, "te"); // Contoh input valid
     await userEvent.click(button);
     expect(getByTestId("home-example-error-msg").textContent).toBe(
-      "Username must be at least 3 characters long"
+      "Username must be at least 3 characters long",
     );
   });
 });

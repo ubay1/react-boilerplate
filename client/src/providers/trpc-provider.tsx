@@ -16,7 +16,7 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
           url: "http://localhost:3000/api/trpc",
         }),
       ],
-    })
+    }),
   );
 
   return (
