@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Dattebayo API", () => {
   test("GET - List All Character Naruto", async ({ page }) => {
-    await page.goto("http://localhost:5173/about");
+    await page.goto("/about");
     const response = await page.request.get(
       "https://dattebayo-api.onrender.com/characters",
     );
