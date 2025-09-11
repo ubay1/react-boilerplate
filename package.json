@@ -1,16 +1,26 @@
 {
   "private": true,
   "scripts": {
-    "dev:server": "nodemon --watch server/src --ext ts --exec tsx server/src/index.ts",
-    "dev:client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
-    "dev2": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server-hono\"",
-    "build": "npm run build --prefix client && npm run build --prefix server"
+    "dev:server": "pnpm --filter server dev",
+    "dev:server-hono": "pnpm --filter server-hono dev",
+    "dev:client": "pnpm --filter client dev",
+    "dev": "concurrently \"pnpm dev:client\" \"pnpm dev:server\"",
+    "dev2": "concurrently \"pnpm dev:client\" \"pnpm dev:server-hono\"",
+    "build:server": "pnpm --filter server build",
+    "build:server-hono": "pnpm --filter server-hono build",
+    "build:client": "pnpm --filter client build",
+    "build": "pnpm build:client && pnpm build:server && pnpm build:server-hono"
   },
   "devDependencies": {
-    "concurrently": "^9.2.0"
+    "concurrently": "^9.2.0",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2"
   },
   "dependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "@supabase/supabase-js": "^2.55.0",
+    "@trpc/server": "^11.4.4",
+    "dotenv": "^17.2.1",
+    "zod": "^4.0.17"
   }
 }
