@@ -15,7 +15,7 @@
     "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-pattern .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "pnpm lint:js && pnpm lint:prettier",
-    "lintfix:js": "pnpm lint:js -- --fix",
+    "lintfix:js": "pnpm lint:js",
     "lintfix:prettier": "prettier --write --list-different .",
     "lintfix": "pnpm lintfix:js && pnpm lintfix:prettier"
   },
