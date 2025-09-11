@@ -17,86 +17,39 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10 # versi pnpm yang kamu pake di lokal
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run lint
-        run: npm run lintfix
+        run: pnpm run lintfix
 
       - name: Run unit tests
-        run: npm run test:unit
+        run: pnpm run test:unit
 
       - name: Build app
-        run: npm run build
+        run: pnpm run build
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: pnpm dlx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: pnpm dlx playwright test
 
-  # 2️⃣ E2E Test pakai Playwright
-  # e2e:
-  #   runs-on: ubuntu-latest
-  #   needs: lint-and-test
-  #   defaults:
-  #     run:
-  #       working-directory: ./client
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
-
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20
-  #         cache: npm
-
-  #     - name: Install dependencies
-  #       run: npm ci
-
-  #     - name: Build app
-  #       run: npm run build
-
-  #     - name: Install Playwright browsers
-  #       run: npx playwright install --with-deps
-
-  #     - name: Run Playwright tests
-  #       run: npx playwright test
-
-  # 3️⃣ Auto Deploy ke Netlify (bisa Vercel juga)
-  # 1. Dapetin NETLIFY_AUTH_TOKEN (Ini adalah token personal access untuk akses API Netlify)
-  # - Login ke Netlify → User Settings
-  # - Scroll ke "Personal Access Tokens"
-  # - Klik New access token
-  # - Kasih nama (misal: ci-playwright)
-  # - Copy tokennya (panjang banget, cuma muncul sekali!)
-
-  # 2. Dapetin NETLIFY_SITE_ID (Ini ID unik site kamu di Netlify. Ada 2 cara)
-  # a) Via Dashboard
-  # Masuk ke site kamu di Netlify
-  # Settings → Site information
-  # Lihat bagian Site ID → copy
-  # b) Via CLI
-  # Install Netlify CLI: npm install -g netlify-cli
-  # Login: netlify login
-  # npx netlify sites:list
-  # Atau di root project (kalau udah link ke Netlify): npx netlify status
-
-  # 3. Simpan di GitHub Actions Secrets
-  # Masuk repo kamu → Settings → Secrets and variables → Actions
-  # Tambah NETLIFY_AUTH_TOKEN → paste token tadi
-  # Tambah NETLIFY_SITE_ID → paste site id tadi
-
+  # 2️⃣ Auto Deploy ke Netlify (opsional)
   # deploy:
   #   runs-on: ubuntu-latest
-  #   needs: e2e
+  #   needs: lint-and-test
   #   defaults:
   #     run:
   #       working-directory: ./client
@@ -104,26 +57,31 @@ jobs:
   #   steps:
   #     - name: Checkout repo
   #       uses: actions/checkout@v4
-
+  #
+  #     - name: Setup pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 9
+  #
   #     - name: Setup Node.js
   #       uses: actions/setup-node@v4
   #       with:
   #         node-version: 20
-  #         cache: 'npm'
-
+  #         cache: "pnpm"
+  #
   #     - name: Install dependencies
-  #       run: npm install
-
+  #       run: pnpm install --frozen-lockfile
+  #
   #     - name: Build project
-  #       run: npm run build
-
+  #       run: pnpm run build
+  #
   #     - name: Deploy to Netlify
   #       uses: nwtgck/actions-netlify@v3
   #       with:
   #         publish-dir: ./dist
   #         production-branch: main
-  #         github-token: ${{ secrets.GITHUB_TOKEN }} # otomatis dari github
-  #         deploy-message: 'Auto deploy from GitHub Actions 🚀'
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         deploy-message: "Auto deploy from GitHub Actions 🚀"
   #         enable-pull-request-comment: true
   #         enable-commit-comment: true
   #         alias: deploy-preview
