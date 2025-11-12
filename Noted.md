@@ -49,3 +49,5 @@ jika ingin running bersamaan tinggal arahin ke root folder. lalu jalankan `npm r
 # Setelah clone
 
 jika ingin mengubah nama projectnya, pada package.json client, server, dan server-hono, ganti namanya. nanti di package.json root juga harus diganti. jika sudah coba jalankan `npm run dev`
+
+jika anda ingin menggunakan server-hono, maka cek semua import "server/routers" ganti jadi "server-hono/routers"
