@@ -45,3 +45,7 @@ npm install @supabase/supabase-js @trpc/server cors dotenv express zod
 5. setiap membuat route
 
 jika ingin running bersamaan tinggal arahin ke root folder. lalu jalankan `npm run dev`
+
+# Setelah clone
+
+jika ingin mengubah nama projectnya, pada package.json client, server, dan server-hono, ganti namanya. nanti di package.json root juga harus diganti. jika sudah coba jalankan `npm run dev`

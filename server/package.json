@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@react-boilerplate/server",
   "private": true,
   "scripts": {
     "dev": "nodemon",

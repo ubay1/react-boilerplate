@@ -1,5 +1,5 @@
 {
-  "name": "server-hono",
+  "name": "@react-boilerplate/server-hono",
   "private": true,
   "scripts": {
     "dev": "nodemon",

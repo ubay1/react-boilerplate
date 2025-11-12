@@ -1,14 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "dev:server": "pnpm --filter server dev",
-    "dev:server-hono": "pnpm --filter server-hono dev",
-    "dev:client": "pnpm --filter client dev",
+    "dev:server": "pnpm --filter @react-boilerplate/server dev",
+    "dev:server-hono": "pnpm --filter @react-boilerplate/server-hono dev",
+    "dev:client": "pnpm --filter @react-boilerplate/client dev",
     "dev": "concurrently \"pnpm dev:client\" \"pnpm dev:server\"",
     "dev2": "concurrently \"pnpm dev:client\" \"pnpm dev:server-hono\"",
-    "build:server": "pnpm --filter server build",
-    "build:server-hono": "pnpm --filter server-hono build",
-    "build:client": "pnpm --filter client build",
+    "build:server": "pnpm --filter @react-boilerplate/server build",
+    "build:server-hono": "pnpm --filter @react-boilerplate/server-hono build",
+    "build:client": "pnpm --filter @react-boilerplate/client build",
     "build": "pnpm build:client && pnpm build:server && pnpm build:server-hono"
   },
   "devDependencies": {
